@@ -1,0 +1,36 @@
+{
+  "name": "sample-nx-project",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/sample-nx-project/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "sample-nx-project:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "sample-nx-project:build:development"
+        },
+        "production": {
+          "buildTarget": "sample-nx-project:build:production"
+        }
+      }
+    },
+    "test-consumer": {
+      "dependsOn": ["build"],
+      "options": {
+        "config": "./jest-consumer.config.ts"
+      }
+    },
+    "publish": {
+      "dependsOn": ["build", "test-consumer"],
+      "command": "node apps/sample-nx-project/publish.js"
+    }
+  }
+}

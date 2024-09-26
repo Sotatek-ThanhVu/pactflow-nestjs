@@ -1,0 +1,32 @@
+{
+  "name": "sample-echo-service",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/sample-echo-service/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "sample-echo-service:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "sample-echo-service:build:development"
+        },
+        "production": {
+          "buildTarget": "sample-echo-service:build:production"
+        }
+      }
+    },
+    "test-provider": {
+      "dependsOn": ["build"],
+      "options": {
+        "config": "./jest-provider.config.ts"
+      }
+    }
+  }
+}

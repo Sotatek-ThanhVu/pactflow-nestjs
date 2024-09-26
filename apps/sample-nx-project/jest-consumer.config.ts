@@ -1,0 +1,7 @@
+export default {
+  displayName: 'sample-nx-project',
+  preset: '../../jest.preset.js',
+  coverageDirectory: '../../coverage/apps/sample-nx-project',
+  testRegex: '.consumer.spec.ts$',
+  passWithNoTests: true,
+};
